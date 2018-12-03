@@ -13,7 +13,7 @@ app.register_blueprint(demo)
 
 
 # 获取所有的url路径
-@app.route("/urls")
+@app.route("/")
 def urls():
     func_list = {}
     for rule in app.url_map.iter_rules():
