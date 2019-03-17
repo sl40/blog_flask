@@ -1,6 +1,10 @@
+import random
 import time
 from functools import lru_cache
-
+from redis_dec import Cache
+from redis import StrictRedis
+redis = StrictRedis(host='10.0.5.5', port='5303', db=7, decode_responses=True)
+cache = Cache(redis)
 '''
 修饰器demo
 '''
@@ -46,4 +50,9 @@ def fibonacci(n):
     return fibonacci(n - 2) + fibonacci(n - 1)
 
 
-print(fibonacci(25))
+@cache.ttl(300)
+def test_redis_ttl():
+    return random.random()
+
+
+# print(fibonacci(25))
