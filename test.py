@@ -1,30 +1,21 @@
-import pandas as pd
-import requests
-import matplotlib.pyplot as plot
-from pylab import mpl
-mpl.rcParams['font.sans-serif'] = ['FangSong']  # 指定默认字体
-mpl.rcParams['axes.unicode_minus'] = False  # 解决保存图像是负号'-'显示为方块的问题
 
-_dict = [
-    {
-        "field1": 10, "field2": 20
-    },
-    {
-        "field1": 10, "field2": 20
-    }
-]
-pd.DataFrame(_dict)
+from lxml import etree
+def get_url():
+    URL = 'https://www.pornhub.com'
+    file = open('1.html', encoding='utf-8')
+    data = file.read()
+    print(data)
+    # noinspection PyUnresolvedReferences
+    html = etree.HTML(data)
+    print(html)
+    title = html.xpath(
+        '//ul[@id="videoSearchResult"]//span[@class="title"]/a/@title')
+    url = html.xpath(
+        '//ul[@id="videoSearchResult"]//span[@class="title"]/a/@href')
+    rate = html.xpath(
+        '//div[@class="rating-container up"]//div[@class="value"]/text()')
+    result = []
+    for _ in range(20):
+        result.append({"url": URL + url[_], "title": title[_],'rate':int(rate[_][:-1])})
 
-df = pd.read_excel('data/all_days.xlsx')
-df = df.iloc[:-1]
-print(df.head())
-# print(df)
-# df = df.sort_index(ascending=False, axis=0).reset_index(drop=True)
-# df.plot()
-# plot.show()
-#
-#
-# print(df)
-
-requests
-
+    return result
