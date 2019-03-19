@@ -4,12 +4,14 @@ from helper.logging import request_logger
 from config.config import config
 # 引用需要注册的蓝图
 from web.controller.demo import demo
+from web.controller.pron import pron
 
 app = Flask(__name__)
 app.debug = 1
 # 安全的加密
 app.secret_key = config.get('web', 'secret_key')
 app.register_blueprint(demo)
+app.register_blueprint(pron)
 
 
 # 获取所有的url路径
