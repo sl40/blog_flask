@@ -3,7 +3,7 @@ from flask import Flask, session, request, g, jsonify
 from helper.logging import request_logger
 from config.config import config
 # 引用需要注册的蓝图
-from web.controller import article
+from web.controller.article import article
 from web.controller.demo import demo
 from web.controller.pron import pron
 from flask_cors import *
