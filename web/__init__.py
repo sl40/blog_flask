@@ -3,15 +3,19 @@ from flask import Flask, session, request, g, jsonify
 from helper.logging import request_logger
 from config.config import config
 # 引用需要注册的蓝图
+from web.controller import article
 from web.controller.demo import demo
 from web.controller.pron import pron
-
+from flask_cors import *
 app = Flask(__name__)
+# r'/*' 是通配符，让本服务器所有的URL 都允许跨域请求
+CORS(app, resources=r'/*')
 app.debug = 1
 # 安全的加密
 app.secret_key = config.get('web', 'secret_key')
 app.register_blueprint(demo)
 app.register_blueprint(pron)
+app.register_blueprint(article)
 
 
 # 获取所有的url路径
