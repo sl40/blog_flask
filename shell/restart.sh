@@ -1,4 +1,5 @@
 #!/bin/sh
+unset GIT_DIR
 cd /root/silin/blog_flask
 git reset --hard
 git pull
