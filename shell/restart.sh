@@ -1,6 +1,7 @@
 #!/bin/sh
+DEPLOY_PATH=/root/silin/blog_flask/
 unset GIT_DIR
-cd /root/silin/blog_flask
+cd $DEPLOY_PATH
 git reset --hard
 git pull
 source venv/bin/activate
