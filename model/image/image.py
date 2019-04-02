@@ -32,4 +32,4 @@ class Image:
         return image
 
     def get_waka_image_url(self, date):
-        return self._host + 'images/waka/%s.jpeg' % date
+        return self._host + 'images/waka/%s' % date

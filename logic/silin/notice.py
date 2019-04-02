@@ -28,6 +28,7 @@ def send_code_time():
     path = Image('waka/%s.jpeg' % date).make_dir().get_path()
     bar.render(path)
     url = Image().get_waka_image_url(date)
+    print(url)
     RobotDing().set_template_waka(date, total, url).send()
 
 
