@@ -29,7 +29,7 @@ class FastDriver(webdriver.Chrome):
         # 无痕模式
         options.add_argument("--incognito")
         #无头浏览器
-        options.add_argument("--headless")
+        # options.add_argument("--headless")
         capa = DesiredCapabilities.CHROME
         capa["pageLoadStrategy"] = "none"
         super().__init__(options=options, desired_capabilities=capa)

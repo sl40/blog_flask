@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, Response
 
 # 蓝图的基本概念是：在蓝图被注册到应用之后，所要执行的操作的集合。当分配请求 时， Flask 会把蓝图和视图函数关联起来，并生成两个端点之前的 URL 。
 demo = Blueprint('demo', __name__, url_prefix='/demo')
@@ -28,3 +28,10 @@ def show_subpath(subpath):
     # show the subpath after /path/
     return 'Subpath %s' % subpath
 
+
+@demo.route("/image/<imageid>")
+def index(imageid):
+    with open('./2019-03-27.jpeg', 'rb') as f:
+        image = f.read()
+    resp = Response(image, mimetype="image/jpeg")
+    return resp

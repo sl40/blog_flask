@@ -5,6 +5,7 @@ from config.config import config
 # 引用需要注册的蓝图
 from web.controller.article import article
 from web.controller.demo import demo
+from web.controller.image import images
 from web.controller.pron import pron
 from flask_cors import *
 app = Flask(__name__)
@@ -16,6 +17,7 @@ app.secret_key = config.get('web', 'secret_key')
 app.register_blueprint(demo)
 app.register_blueprint(pron)
 app.register_blueprint(article)
+app.register_blueprint(images)
 
 
 # 获取所有的url路径
@@ -47,7 +49,8 @@ def after_request(response):
         'request.data': request.get_data(as_text=True),
         'request.remote_addr': request.remote_addr,
         'response.status': response.status,
-        'response.data': response.get_data(as_text=True) if request.path.find('download') < 0 else '',
+        'response.data': response.get_data(as_text=True) if request.path.find(
+            'image') < 0 else '',
     })
 
     return response
