@@ -1,6 +1,8 @@
-from flask import Blueprint, Response
+from flask import Blueprint, Response,jsonify
 
 # 蓝图的基本概念是：在蓝图被注册到应用之后，所要执行的操作的集合。当分配请求 时， Flask 会把蓝图和视图函数关联起来，并生成两个端点之前的 URL 。
+from model.third_api.waka_time import WakaTime
+
 demo = Blueprint('demo', __name__, url_prefix='/demo')
 
 
@@ -35,3 +37,9 @@ def index(imageid):
         image = f.read()
     resp = Response(image, mimetype="image/jpeg")
     return resp
+
+
+@demo.route("/waka")
+def waka():
+    data = WakaTime().get_history()
+    return jsonify(data)

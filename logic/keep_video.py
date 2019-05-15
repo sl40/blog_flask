@@ -12,7 +12,7 @@ from lxml import etree
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from helper.redis import product
+from helper.redis import product_redis
 
 
 class FastDriver(webdriver.Chrome):
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     for name,url in get_page_data("https://www.pornhub.com/playlist/72958812").items():
         video_url = get_down_load_rul(url)
         if video_url:
-            product.set(name,video_url)
+            product_redis.set(name,video_url)
             print('成功%s-->%s'%(name,video_url))
         else:
             print('失败%s-->%s'%(name,url))

@@ -3,6 +3,7 @@ from flask import Flask, session, request, g, jsonify
 from helper.logging import request_logger
 from config.config import config
 # 引用需要注册的蓝图
+from web.controller.self import self
 from web.controller.article import article
 from web.controller.demo import demo
 from web.controller.image import images
@@ -18,6 +19,8 @@ app.register_blueprint(demo)
 app.register_blueprint(pron)
 app.register_blueprint(article)
 app.register_blueprint(images)
+app.register_blueprint(self)
+
 
 
 # 获取所有的url路径
