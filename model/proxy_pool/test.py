@@ -3,6 +3,7 @@ import time
 
 import aiohttp
 
+from helper.redis import product_redis
 from model.proxy_pool.store import ProxyPool
 
 VALID_STATUS_CODES = [200]
@@ -12,7 +13,7 @@ BATCH_TEST_SIZE = 100
 
 class Tester(object):
     def __init__(self):
-        self.db = ProxyPool()
+        self.db = ProxyPool(product_redis)
 
     async def test_single_proxy(self, proxy):
         conn = aiohttp.TCPConnector(verify_ssl=False)

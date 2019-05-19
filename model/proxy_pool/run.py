@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from helper.redis import product_redis
 from helper.web_drive import FastDriver
 from model.proxy_pool.store import ProxyPool
 
@@ -102,17 +103,17 @@ def spider():
 def spider_chrome():
     url = 'https://blog.csdn.net/u012739198/article/details/90108131'
     for _ in range(100):
-        prxoy = ProxyPool().random()
+        prxoy = ProxyPool(product_redis).random()
         driver = FastDriver(proxy=prxoy)
         driver.get(url)
         try:
-            WebDriverWait(driver,10).until(
+            WebDriverWait(driver,20).until(
             EC.presence_of_element_located((By.ID, 'article_content')))
             html = etree.HTML(driver.page_source)
             count =html.xpath('//*[@id="mainBox"]/main/div[1]/div/div/div[2]/div[1]/span[2]/text()')
             print(count,prxoy)
         except:
-            print('加载超过20秒，强制停止加载....')
+            print('加载超过20秒，强制停止加载....',prxoy)
         driver.close()
 
 

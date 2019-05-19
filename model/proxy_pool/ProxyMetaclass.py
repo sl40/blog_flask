@@ -3,7 +3,7 @@ import time
 import requests
 from lxml import etree
 
-from helper.redis import test_redis
+from helper.redis import test_redis,product_redis
 from helper.web_drive import get_page_data
 from model.proxy_pool.store import ProxyPool
 
@@ -28,7 +28,7 @@ class Crawler(object, metaclass=ProxyMetaclass):
             proxies.append(proxy)
         return proxies
 
-    def crawl_kuaidaili(self, page_count=20):
+    def crawl_kuaidaili(self, page_count=50):
         start_url = 'https://www.kuaidaili.com/free/inha/{}/'
         urls = [start_url.format(page) for page in range(1, page_count + 1)]
         for url in urls:
@@ -43,7 +43,7 @@ class Crawler(object, metaclass=ProxyMetaclass):
 
 class Getter:
     def __init__(self):
-        self.pool = ProxyPool()
+        self.pool = ProxyPool(product_redis)
         self.crawler = Crawler()
 
     def run(self):

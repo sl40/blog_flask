@@ -6,6 +6,7 @@ from model.proxy_pool.test import Tester
 
 def main():
     while True:
+        # Getter().run()
         Tester().run()
         time.sleep(60)
 
