@@ -7,7 +7,7 @@ async-timeout==3.0.1
 attrs==18.2.0
 backcall==0.1.0
 billiard==3.5.0.4
-bleach==3.0.2
+bleach==3.3.0
 cachetools==3.0.0
 celery==4.2.1
 certifi==2018.11.29
