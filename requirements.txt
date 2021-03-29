@@ -77,7 +77,7 @@ pyecharts==0.5.11
 pyecharts-javascripthon==0.0.6
 pyecharts-jupyter-installer==0.0.3
 pyecharts-snapshot==0.1.10
-Pygments==2.3.0
+Pygments==2.7.4
 pyparsing==2.3.0
 pypng==0.0.19
 PyQRCode==1.2.1
